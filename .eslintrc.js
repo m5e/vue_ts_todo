@@ -5,9 +5,13 @@ module.exports = {
   },
   extends: ["plugin:vue/essential", "eslint:recommended", "@vue/prettier"],
   parserOptions: {
-    parser: "babel-eslint",
+    parser: "@typescript-eslint/parser", // typescript 系の lint エラー対応で babel-eslint から変更
+    ecmaVersion: 2018,
     ecmaFeatures: {
       legacyDecorators: true,
+      "no-undef": "off",
+      "no-unused-vars": "off",
+      strict: "off",
     },
   },
   rules: {

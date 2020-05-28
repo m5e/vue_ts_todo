@@ -1,0 +1,75 @@
+<template>
+  <div class="hello">
+    <h1>{{ msg }}</h1>
+    <form @submit.prevent="addTask">
+      <input type="text" class="newTask" />
+      <button type="submit">ADD</button>
+    </form>
+    <ul v-for="(task, index) in todoList" :key="index">
+      <li v-show="task.value !== ''">
+        <input type="checkbox" />
+        {{ task.value }}
+        <button @click="removeTask(task.id)">DELETE</button>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script lang="ts">
+import { Component, Prop, Vue } from "vue-property-decorator";
+
+type taskType = [
+  {
+    id: number;
+    value: string;
+  }
+];
+
+@Component
+export default class Todo extends Vue {
+  @Prop() private msg!: string;
+  newTask: string = "";
+  todoList: taskType = [{ id: 0, value: "" }];
+
+  addTask(): void {
+    const inputTextElement = this.$el.getElementsByClassName(
+      "newTask"
+    )[0] as HTMLInputElement;
+
+    const todo = this.todoList.find((task) => task.id === 0);
+    if (this.todoList.length === 1 && todo?.value === "") {
+      if (todo) todo.value = `${inputTextElement.value}`;
+    } else {
+      this.todoList.push({
+        id: Number(this.todoList.length),
+        value: inputTextElement.value,
+      });
+    }
+
+    inputTextElement.value = "";
+  }
+
+  removeTask(id: number): void {
+    for (let i = this.todoList.length - 1; i >= 0; i--) {
+      if (this.todoList[i].id === id) this.todoList.splice(i, 1);
+    }
+  }
+}
+</script>
+
+<style scoped lang="scss">
+h3 {
+  margin: 40px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: list-item;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+</style>
