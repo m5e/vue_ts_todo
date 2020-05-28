@@ -7,7 +7,7 @@
     </form>
     <ul v-for="(task, index) in todoList" :key="index">
       <li v-show="task.value !== ''">
-        <input type="checkbox" />
+        <input type="checkbox" @change="refreshCheckStatus($event)" />
         {{ task.value }}
         <button @click="removeTask(task.id)">DELETE</button>
       </li>
@@ -54,6 +54,16 @@ export default class Todo extends Vue {
       if (this.todoList[i].id === id) this.todoList.splice(i, 1);
     }
   }
+
+  refreshCheckStatus(e: MouseEvent): void {
+    const target = e.target as HTMLInputElement;
+    if (!target) return;
+
+    const parent = target.parentElement;
+    if (!parent) return;
+
+    parent.classList.toggle("chacked-li");
+  }
 }
 </script>
 
@@ -71,5 +81,9 @@ li {
 }
 a {
   color: #42b983;
+}
+
+li.chacked-li {
+  text-decoration: line-through;
 }
 </style>
