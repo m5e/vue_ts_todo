@@ -41,7 +41,7 @@ export default class Todo extends Vue {
       if (todo) todo.value = `${inputTextElement.value}`;
     } else {
       this.todoList.push({
-        id: Number(this.todoList.length),
+        id: this.todoList.length,
         value: inputTextElement.value,
       });
     }
@@ -59,7 +59,7 @@ export default class Todo extends Vue {
     const target = e.target as HTMLInputElement;
     if (!target) return;
 
-    const parent = target.parentElement;
+    const parent: HTMLElement | null = target.parentElement;
     if (!parent) return;
 
     parent.classList.toggle("chacked-li");
