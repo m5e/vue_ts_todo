@@ -2,8 +2,6 @@
   "name": "vue_ts_todo",
   "version": "0.1.0",
   "private": true,
-  "target": "es5",
-  "strict": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

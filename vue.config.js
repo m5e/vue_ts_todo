@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: "/vue_ts_todo/ ",
-  assetsDir: "",
+  publicPath: "./",
+  assetsDir: "./",
   outputDir: "docs",
 };
