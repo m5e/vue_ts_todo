@@ -2,14 +2,29 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <form @submit.prevent="addTask">
-      <input type="text" class="newTask" />
-      <button type="submit">ADD</button>
+      <input
+        class="newTask shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        type="text"
+        placeholder="new task name"
+      />
+      <button
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        type="submit"
+      >
+        ADD
+      </button>
     </form>
     <ul v-for="(task, index) in todoList" :key="index">
       <li v-show="task.value !== ''">
         <input type="checkbox" @change="refreshCheckStatus($event)" />
         {{ task.value }}
-        <button @click="removeTask(task.id)">DELETE</button>
+        <button
+          class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="button"
+          @click="removeTask(task.id)"
+        >
+          DELETE
+        </button>
       </li>
     </ul>
   </div>
@@ -85,5 +100,9 @@ a {
 
 li.chacked-li {
   text-decoration: line-through;
+}
+
+.newTask {
+  width: 60%;
 }
 </style>

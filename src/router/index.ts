@@ -1,5 +1,5 @@
 import Vue from "vue";
-import VueRouter, { RouteConfig } from "vue-router";
+import VueRouter, { RouteConfig } from "vue-router"; // eslint-disable-line
 import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);

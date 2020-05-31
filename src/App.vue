@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/todo.png" />
+    <img class="image" alt="Vue logo" src="./assets/todo.png" />
     <Todo msg="TODO LIST" />
   </div>
 </template>
@@ -25,5 +25,10 @@ export default class App extends Vue {}
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.image {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 7%;
 }
 </style>
