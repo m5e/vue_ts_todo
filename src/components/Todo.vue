@@ -5,7 +5,7 @@
       <input
         class="newTask shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         type="text"
-        placeholder="new task name"
+        placeholder="Please enter the task name"
       />
       <button
         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -14,12 +14,20 @@
         ADD
       </button>
     </form>
-    <ul v-for="(task, index) in todoList" :key="index">
-      <li v-show="task.value !== ''">
-        <input type="checkbox" @change="refreshCheckStatus($event)" />
+    <ul>
+      <li
+        v-show="task.value !== ''"
+        v-for="(task, index) in todoList"
+        :key="index"
+      >
+        <input
+          class="task-checkbox"
+          type="checkbox"
+          @change="refreshCheckStatus($event)"
+        />
         {{ task.value }}
         <button
-          class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          class="delete-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="button"
           @click="removeTask(task.id)"
         >
@@ -83,23 +91,39 @@ export default class Todo extends Vue {
 </script>
 
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
+h1 {
+  font-family: "BIZ UDPGothic";
 }
+
+form {
+  margin-top: 2%;
+}
+
 ul {
   list-style-type: none;
   padding: 0;
+  margin-top: 3%;
 }
+
 li {
   display: list-item;
   margin: 0 10px;
 }
+
 a {
   color: #42b983;
 }
 
 li.chacked-li {
   text-decoration: line-through;
+}
+
+.task-checkbox {
+  margin-right: 1.5%;
+}
+
+.delete-button {
+  margin-left: 2%;
 }
 
 .newTask {
